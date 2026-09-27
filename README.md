@@ -1,48 +1,49 @@
-# 🎛️ Resizable VHDL 8-Bit ALU Core
+# 🎛️ Parametric VHDL 8-Bit ALU
 
-A real-world ready, fully resizable **8-bit Arithmetic Logic Unit (ALU)** written in VHDL. 
-This project was developed for a laboratory assignment in my **Digital Systems**. The objective of the lab was to take a basic 4-action classroom template (`miniALU`) provided by the instructor and systematically expand it into a full 8-action computer processing core.
+A customizable **8-bit ALU** in VHDL for my digital systems lab. I took the basic 4-operation `miniALU` template from class and expanded it to handle 8 operations.
 
----
+## 🚀 Features
 
-## 🚀 Lab Implementation Details
+* **8 operations** selected via a 3-bit opcode.
+* **Signed & Unsigned Support** using Two's Complement logic.
+* **Logic Functions:** NOT, AND, OR, XOR.
+* **Resizable:** Scalable via a VHDL generic property.
 
-To complete the lab requirements, the original template was refactored and expanded with the following hardware features:
+## ⚙️ Opcode Map
 
-- 8 distinct operations using a 3-bit opcode selector
-- **Separated Math Pathways** → Uses Two's Complement logic for accurate signed math
-- **Integrated Extra Logic Gates** → Bitwise NOT, AND, OR, and XOR functions
-- **Fully Resizable Design** → Scalable to 16, 32, or 64 bits via a single VHDL generic property
-
----
-
-## ⚙️ How to Control the ALU (3-Bit Opcode Map)
-
-The ALU uses a 3-bit code (`opcode`) to select exactly which action to perform on inputs `a` and `b`:
-
-### Opcode Map
-
-| Operation | Opcode |
-| :--- | :--- |
-| 🟢 LOGICAL NOT: Output = NOT a | 000 |
-| 🟢 LOGICAL AND: Output = a AND b | 001 |
-| 🟢 LOGICAL OR: Output = a OR b | 010 |
-| 🟢 LOGICAL XOR: Output = a XOR b | 011 |
-| 🔵 UNSIGNED ADDITION: Output = a + b (Includes Carry Out flag) | 100 |
-| 🔵 UNSIGNED SUBTRACTION: Output = a - b (Includes Carry Out flag) | 101 |
-| 🔴 SIGNED ADDITION: Output = a + b (Includes Overflow error flag) | 110 |
-| 🔴 SIGNED SUBTRACTION: Output = a - b (Includes Overflow error flag) | 111 |
-
+| Operation | Opcode | Type | Notes |
+| :--- | :---: | :---: | :--- |
+| **LOGICAL NOT:** NOT a | `000` | Logic | |
+| **LOGICAL AND:** a AND b | `001` | Logic | |
+| **LOGICAL OR:** a OR b | `010` | Logic | |
+| **LOGICAL XOR:** a XOR b | `011` | Logic | |
+| **UNSIGNED ADD:** a + b | `100` | Arith | Carry Out flag |
+| **UNSIGNED SUB:** a - b | `101` | Arith | Carry Out flag |
+| **SIGNED ADD:** a + b | `110` | Arith | Overflow flag |
+| **SIGNED SUB:** a - b | `111` | Arith | Overflow flag |
 
 ---
 
-## 🔬 Functional Verification & Testing
+## 🔬 Testing
 
-*   **Simulation Stimulus:** Designed custom **Vector Waveform Files (.vwf)** to supply deterministic test vectors, clock toggles, and variable opcode patterns.
-*   **Verification:** Monitored output signals and timing responses inside **Quartus's Waveform Simulator Engine** to confirm strict arithmetic and logical accuracy across all operational modes.
+### 💻 Simulation 
+* Used custom **Vector Waveform Files (.vwf)** for test vectors and opcodes.
+* Checked signals in the **Quartus Waveform Simulator**.
 
----
+### 🆕 NEW: 🛠️ Hardware Testing (DE10-Lite Board)
+Tested on a physical **Terasic DE10-Lite FPGA board**:
+* Inputs on toggle switches, opcode on switches/pushbutton, outputs on red LEDs.
 
-## 🔧 Target System Tools
-*   **Software Ecosystem:** Intel Quartus Prime Toolchain
-*   **Verification Interface:** Quartus Waveform Editor (VWF) 
+### 🆕 NEW: 📍 FPGA Pin Assignments
+
+| Port | Hardware | Pin | Description |
+| :--- | :--- | :---: | :--- |
+| **`a[0-3]`** | Switch 0-3 | **C10-C12** | Input A |
+| **`b[0-3]`** | Switch 4-7 | **A12-A14** | Input B |
+| **`op[0-1]`** | Switch 8-9 | **B14, F15**| Opcode Bit 0-1 |
+| **`op`** | Key 0 | **B8** | Opcode Bit 2 |
+| **`y[0-3]`** | LEDR 0-3 | **A8-B10** | Output Y |
+| **`c_out`** | LEDR 4 | **B11** | Carry/Overflow |
+
+## 🔧 Tools
+* Intel Quartus Prime, Terasic DE10-Lite (MAX 10 FPGA).
