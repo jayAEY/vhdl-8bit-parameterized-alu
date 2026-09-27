@@ -26,24 +26,23 @@ A customizable **8-bit ALU** in VHDL for my digital systems lab. I took the basi
 
 ## 🔬 Testing
 
+
 ### 💻 Simulation 
 * Used custom **Vector Waveform Files (.vwf)** for test vectors and opcodes.
 * Checked signals in the **Quartus Waveform Simulator**.
 
-### 🆕 NEW: 🛠️ Hardware Testing (DE10-Lite Board)
-Tested on a physical **Terasic DE10-Lite FPGA board**:
+### 🛠️ Hardware Testing (Intel MAX 10 FPGA)
+* Tested on a physical **Terasic DE10-Lite FPGA board** **with Intel MAX 10 FPGA**
+* Programmed with Intel Quartus Prime
 * Inputs on toggle switches, opcode on switches/pushbutton, outputs on red LEDs.
 
-### 🆕 NEW: 📍 FPGA Pin Assignments
+### FPGA Pin Assignments
 
-| Port | Hardware | Pin | Description |
-| :--- | :--- | :---: | :--- |
-| **`a[0-3]`** | Switch 0-3 | **C10-C12** | Input A |
-| **`b[0-3]`** | Switch 4-7 | **A12-A14** | Input B |
-| **`op[0-1]`** | Switch 8-9 | **B14, F15**| Opcode Bit 0-1 |
-| **`op`** | Key 0 | **B8** | Opcode Bit 2 |
-| **`y[0-3]`** | LEDR 0-3 | **A8-B10** | Output Y |
-| **`c_out`** | LEDR 4 | **B11** | Carry/Overflow |
-
-## 🔧 Tools
-* Intel Quartus Prime, Terasic DE10-Lite (MAX 10 FPGA).
+| Port | Hardware | Description |
+| :--- | :--- | :--- |
+| **`a[0-3]`** | Switch 0-3 | Input A |
+| **`b[0-3]`** | Switch 4-7 | Input B |
+| **`op[0-1]`** | Switch 8-9 | Opcode Bit 0-1 |
+| **`op`** | Key 0 | Opcode Bit 2 |
+| **`y[0-3]`** | LEDR 0-3 | Output Y |
+| **`c_out`** | LED R9 | Carry/Overflow |
