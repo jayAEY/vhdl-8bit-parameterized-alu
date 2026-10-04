@@ -1,4 +1,4 @@
-# 🎛️ Parametric VHDL 8-Bit ALU
+# 🎛️ Parameterizd VHDL 8-Bit ALU
 
 A customizable **8-bit ALU** in VHDL for my digital systems lab. I took the basic 4-operation `miniALU` template from class and expanded it to handle 8 operations.
 
